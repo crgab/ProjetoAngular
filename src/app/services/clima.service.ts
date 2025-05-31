@@ -1,6 +1,5 @@
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,10 +13,11 @@ export class ClimaService {
 
   getClima(): Observable<any> {
     const params = [
-      `latitude=${this.latitude}`, `longitude${this.longitude}`, 
+      `latitude=${this.latitude}`, `longitude=${this.longitude}`, 
       `current=temperature_2m,wind_speed_10m`, 
       `hourly=temperature_2m,relative_humidity_2m,wind_speed_10m`
     ].join('&');
+
     return this.http.get(`${this.apiUrl}?${params}`)
   }
 }
